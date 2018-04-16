@@ -1,0 +1,154 @@
+﻿@model Team_5_Project.Models.Flight
+
+@{
+    ViewBag.Title = "Manifest";
+}
+
+<h2>Flight Manifest</h2>
+@Html.ActionLink("Search for Flights","FlightSearch")
+<div>
+    <h4>Flight Manifest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartDateTime) 
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FlightNumber.Number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SeatsAvailable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeatsAvailable)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FlightNumber.startCity.Airport)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FlightNumber.Route.Cities.Where(c => c.CityID != model.FlightNumber.startCity.CityID).ToList()[0].Airport)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActualFare)
+        </dt>
+
+        <dd>
+            $@Html.DisplayFor(model => model.ActualFare)
+        </dd>
+
+        <dt>
+            Pilot
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PilotFullName)
+        </dd>
+
+        <dt>Co Pilot
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoPilotFullName)
+        </dd>
+        <dt>Flight Attendant
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CabinCrewFullName)
+        </dd>
+    </dl>
+    <table class="table">
+        <tr>
+        <th>
+            Seat Name
+        </th>
+
+        <th>
+            Customer First Name
+        </th>
+
+        <th>
+           Customer Last Name
+        </th>
+
+        <th>
+           Checked In?
+        </th>
+
+        <th>
+            Lap Child
+        </th>
+        </tr>
+
+        
+        @foreach (var seat in Model.Seats)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(Model => seat.SeatName)
+                </td>
+                <td>
+                    @if (seat.Ticket != null)
+                {
+                        @Html.DisplayFor(Model => seat.Ticket.Customer.FirstName)
+                    }
+                    else
+                    {
+                        @Html.DisplayText("Empty")
+                    }
+                </td>
+                <td>
+                    @if (seat.Ticket != null)
+                {
+                        @Html.DisplayFor(Model => seat.Ticket.Customer.LastName)
+                    }
+                    else
+                    {
+                        @Html.DisplayText("Empty")
+                    }
+                </td>
+                <td>
+
+                    @if (seat.Ticket != null)
+                {
+                        @Html.DisplayFor(Model => seat.Ticket.CheckedIn)
+                    }
+                    else
+                    {
+                        @Html.DisplayText("Empty")
+                    }
+
+                    @if (seat.Ticket != null)
+                    {
+                        if (seat.Ticket.LapChild == "" || seat.Ticket.LapChild == null)
+                        {
+                            @Html.DisplayText("Empty")
+                        }
+                        else {@Html.DisplayFor(Model => seat.Ticket.LapChild)}
+                    }
+                    else
+                    {
+                        @Html.DisplayText("Empty")
+                    }
+
+                </td>
+            </tr>
+
+        }
+        
+        </table>
+
+</div>
+<p>
+    @Html.ActionLink("Make Flight Depart", "Edit", new { id = Model.FlightID }) |
+    @Html.ActionLink("Check In Customer", "CheckIn", new { id = Model.FlightID }) |
+    @Html.ActionLink("Assign Crew Member", "Edit", new { id = Model.FlightID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

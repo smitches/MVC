@@ -1,0 +1,58 @@
+﻿@model Team_5_Project.Models.ReportsViewModel
+@{
+    ViewBag.Title = "BothReportResult";
+}
+
+<h2>Report: Seats And Revenue</h2>
+
+<h2>RoundTripFlightSearchResults</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRangeStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRangeEnd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartureCities)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Route)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeatType)
+        </th>
+        <th>
+            Seats:
+        </th>
+        <th>
+            Revenue Earned:
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(Model => Model.DateRangeStart)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => Model.DateRangeEnd)
+        </td>
+
+        @foreach (var item in Model.DepartureCities)
+            {
+            <td>
+                @Html.DisplayFor(Model => item.CityName)
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(Model => Model.Route.RouteName)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => Model.Seats.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => Model.Revenue)
+        </td>
+    </tr>
+
+</table>

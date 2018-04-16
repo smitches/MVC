@@ -1,0 +1,24 @@
+﻿@model Team_5_Project.Models.RoundTripFSVM
+@{
+    ViewBag.Title = "ReserveDepartureFlight";
+}
+
+<h2>ReserveDepartureFlight</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Seats</label>
+        <div class="col-md-10">
+            @Html.ListBox("SeatIDs", (MultiSelectList)ViewBag.SeatsChosen, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <li>@Html.ActionLink("Search For Flights", "FlightSearch", "FlightSearch", new { area = "" }, new { @class = "btn btn-default" })</li>
+
+
+}

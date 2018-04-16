@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "ReserveReturn";
+}
+
+<h2>ReserveReturn</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    @*<img src="seatsphoto.png" alt="seatsphoto" width="500" height="600">*@
+
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Seats</label>
+        <div class="col-md-10">
+            @Html.ListBox("SeatIDs", (MultiSelectList)ViewBag.SeatsChosen, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+    </div>
+
+}

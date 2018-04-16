@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "GetSeats";
+}
+
+<h2>GetSeats</h2>
+
+@model Team_5_Project.Models.RoundTripFSVM
+@{
+    ViewBag.Title = "GetCustomer";
+}
+
+<h2>Seats Needing Customer Information</h2>
+
+<table class="table">
+
+
+    @foreach (var item in Model.Seats.OrderBy(d => d.Flight.DepartDateTime).ThenBy(d => d.SeatName))
+    {
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Seats.First().Flight.FlightNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seats.First().Flight.DepartDateTime)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Seats.First().SeatName)
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.FlightNumber.Number)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.DepartDateTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatName)
+            </td>
+
+
+
+            <td>
+                @Html.ActionLink("Search for an Existing Customer", "RTSearchCustomer", new { id = item.SeatID, vm=Model })
+                @Html.ActionLink("Create a new Customer", "RTCreateCustomer")
+
+            </td>
+            <
+        </tr>
+    }
+
+</table>

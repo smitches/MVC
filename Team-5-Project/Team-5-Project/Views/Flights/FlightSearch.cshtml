@@ -1,0 +1,67 @@
+﻿
+
+@using Team_5_Project.Controllers
+@model Team_5_Project.Models.FlightSearchViewModel
+@{
+    ViewBag.Title = "Flight Search";
+}
+
+<h2>Flight Search</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <div>
+                <b>Departs From</b>
+            </div>
+            @*@Html.LabelFor(model => model.BeginDepartureTimeRange, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BeginDepartureTimeRange, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(model => model.BeginDepartureTimeRange, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <b>Until</b>
+            </div>
+
+            @*@Html.LabelFor(model => model.EndDepartureTimeRange, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EndDepartureTimeRange, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(model => model.EndDepartureTimeRange, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <b>Departure City</b>
+            </div>
+            <div class="col-md-10">
+                @Html.DropDownList("City1ID", (SelectList)ViewBag.AllCities, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <b>Arrival City</b>
+            </div>
+            <div class="col-md-10">
+                @Html.DropDownList("City2ID", (SelectList)ViewBag.AllCities, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+
+
+    </div>
+}

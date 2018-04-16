@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Reserve";
+}
+
+<h2>Reserve A Seat</h2>
+<h3>Seat Layout</h3>
+
+<link href="~/Content/squarestyle.css" rel="stylesheet" type="image/svg" />
+<html>
+<body>
+    <img src="~/Content/seatsphotopenguinairlines.jpg" width="661" height="635" alt="" />
+</body>
+</html>
+
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    
+    <div class="form-group">
+        <label class="control-label col-md-2">Seats</label>
+        <div class="col-md-10">
+            @Html.ListBox("SeatIDs", (MultiSelectList)ViewBag.SeatsChosen, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+    </div>
+
+    
+
+        
+
+}

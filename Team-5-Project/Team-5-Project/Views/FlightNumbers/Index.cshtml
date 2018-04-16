@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Team_5_Project.Models.FlightNumber>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New Flight Number", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Start City
+        </th>
+
+        <th>
+            End City
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartTime)
+        </th>
+        <th>
+            Duration
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.BaseFare)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.startCity.Airport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Route.Cities.Where(c => c != item.startCity).ToList()[0].Airport)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Number)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Route.Hours)
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.BaseFare)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FlightNumberID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FlightNumberID }) @*|
+            @Html.ActionLink("Delete", "Delete", new { id=item.FlightNumberID })*@
+        </td>
+    </tr>
+}
+
+</table>

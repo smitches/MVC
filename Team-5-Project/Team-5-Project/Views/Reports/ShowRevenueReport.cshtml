@@ -1,0 +1,46 @@
+﻿@model Team_5_Project.Models.RevenueVM
+@{
+    ViewBag.Title = "ShowRevenueReport";
+}
+
+<h2>Show Revenue Report</h2>
+
+<div class="form-group">
+    <div>
+        <b>
+            Total Revenue
+        </b>
+    </div>
+    <div class="col-md-10">
+        @Html.DisplayFor(model => model.Revenue, new { htmlAttributes = new { @class = "form-control" } })
+        
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Flights.FirstOrDefault().FlightNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flights.FirstOrDefault().DepartDateTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Flights)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartDateTime)
+            </td>
+          
+            <td>
+                @Html.ActionLink("Flight Manifest", "Details","Flights", new { id = item.FlightID }) 
+            </td>
+        </tr>
+    }
+
+</table>

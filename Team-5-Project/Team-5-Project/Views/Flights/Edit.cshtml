@@ -1,0 +1,101 @@
+﻿@model Team_5_Project.Models.Flight
+
+@{
+    ViewBag.Title = "Edit";
+}
+<h1></h1>
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Flight on @Html.DisplayFor(model=>model.DepartDateTime) from @Html.DisplayFor(model=>model.FlightNumber.startCity.Airport) to @Html.DisplayFor(model=>model.FlightNumber.endCityAirport)</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.FlightID)
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.DepartDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DepartDateTime, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.DepartDateTime, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ActualFare, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ActualFare, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(model => model.ActualFare, "", new { @class = "text-danger" })
+            </div>
+         </div>
+
+
+        <div class="form-group">
+        @Html.LabelFor(model => model.DepartDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DepartDateTime, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.ValidationMessageFor(model => model.DepartDateTime, "", new { @class = "text-danger" })
+        </div>
+       </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Departed, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Departed, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(model => model.Departed, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cancelled, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cancelled, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(model => model.Cancelled, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-horizontal">
+
+            <p>Change the Pilot</p>
+            <div class="form-group">
+                @Html.DropDownList("Pilot", (SelectList)ViewBag.Pilots, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-horizontal">
+
+            <p>Change the Co-Pilot</p>
+            <div class="form-group">
+                @Html.DropDownList("CoPilot", (SelectList)ViewBag.CoPilots, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-horizontal">
+
+            <p>Change the Cabin Crew</p>
+            <div class="form-group">
+                @Html.DropDownList("Crew", (SelectList)ViewBag.CrewMembers, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

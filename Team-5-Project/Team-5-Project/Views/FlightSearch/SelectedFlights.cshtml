@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Team_5_Project.Models.Flight>
+@{
+    ViewBag.Title = "SelectedFlights";
+}
+
+<h2>SelectedFlights</h2>
+
+
+<h2>Search Results</h2>
+<h3>@ViewBag.Error</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FlightNumber)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FlightNumber.startCity.Airport)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FlightNumber.endCityAirport)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ActualFare)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeatsAvailable)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Departed)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderBy(d => d.DepartDateTime))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartDateTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber.Number)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber.startCity.Airport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber.endCityAirport)
+            </td>
+
+
+            <td>
+                $@Html.DisplayFor(modelItem => item.ActualFare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatsAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departed)
+            </td>
+
+            <td>
+               @Html.ActionLink("Reserve", "Reserve", new { id = item.FlightID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,14 @@
+﻿@model List<Team_5_Project.Models.AppUser>
+@{
+    ViewBag.Title = "AllChildrenCustomers";
+}
+
+<h2>AllChildrenCustomers</h2>
+
+@foreach (var item in Model)
+{
+    <div><div>
+        @Html.DisplayFor(Model=>item.FirstName)</div><div>
+            @Html.DisplayFor(Model=>item.LastName)</div>
+    @Html.ActionLink("Lap Child", "AttachChosenLapChild", new { id = item.Id })</div>
+}

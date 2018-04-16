@@ -1,0 +1,43 @@
+﻿     @model IEnumerable<Team_5_Project.Models.Flight>
+    @{
+        ViewBag.Title = "SearchResults";
+
+    }
+
+    <h2>RoundTripFlightSearchResults</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualFare)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartDateTime)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightNumber.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualFare)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FlightID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FlightID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FlightID })
+                </td>
+            </tr>
+        }
+
+    </table>

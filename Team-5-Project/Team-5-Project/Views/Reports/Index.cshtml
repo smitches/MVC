@@ -1,0 +1,33 @@
+﻿@model Team_5_Project.Models.ReportsViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reports Index</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @*Select a report type*@
+        <p>What Report do you need?</p>
+
+
+        <div class="form-group">
+            @Html.DropDownList("ReportType", (SelectList)ViewBag.ReportTypes, new { @class = "form-control" })
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+
+

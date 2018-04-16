@@ -1,0 +1,118 @@
+﻿@model Team_5_Project.Models.checkoutviewmodel
+
+@{
+	ViewBag.Title = "Total";
+}
+
+<h2>Total </h2>
+
+<p>
+
+<table class="table">
+	<tr>
+		
+		<th>
+			@Html.DisplayNameFor(model => model.FirstName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.LastName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ActualFare)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.InternetDiscount)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.EarlyDiscount)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ChildDiscount)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.SeniorDiscount)
+		</th>
+		<th>
+			Seat Type
+		</th>
+		<th>
+            Flight Departure Time
+		</th>
+		<th>
+			Flight Number
+		</th>
+        <th>
+            Seat Number
+        </th>
+		<th>
+			@Html.DisplayNameFor(model => model.DiscountedFare)
+		</th>
+        <th>
+            LapChild
+        </th>
+
+		<th></th>
+	</tr>
+
+	@foreach (var ticket in Model.Tickets)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.Customer.FirstName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.Customer.LastName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.ActualFare)			
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.InternetDiscount)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.EarlyDiscount)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.ChildDiscount)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.SeniorDiscount)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => ticket.Seat.SeatType.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.Flight.DepartDateTime)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.Flight.FlightNumber.Number)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.Seat.SeatName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => ticket.DiscountedFare)
+			</td>
+            <td>
+                @Html.DisplayFor(modelItem => ticket.LapChild)
+            </td>
+
+
+</tr>
+
+	}
+
+	
+
+	</table>
+	
+		<div>PreTotal</div>
+		@Html.DisplayFor(Model => Model.PreTotal)
+		<div>Total</div>
+		@Html.DisplayFor(Model => Model.Total)
+		@Html.ActionLink("Search for an Existing Customer to make Primary Traveler","SearchCustomer")
+	</p>
+
+@Html.ActionLink("Checkout", "Index", "Home")
+@*@Html.ActionLink("Checkout", "ReservationConfirmed", "MailModels")*@

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Team_5_Project.Models.Ticket>
+@{
+    ViewBag.Title = "DeterminePaymentType";
+}
+
+<h2>DeterminePaymentType</h2>
+
+<h3>@ViewBag.Error</h3>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<div class="form-horizontal">
+		@foreach (var ticket in Model)
+		{
+
+		<div class="form-group">
+			@Html.LabelFor(model => ticket.Customer.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.DisplayFor(model => ticket.Customer.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+
+
+
+
+		<div class="form-group">
+			@Html.LabelFor(model => ticket.Customer.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.DisplayFor(model => ticket.Customer.LastName, new { htmlAttributes = new { @class = "form-control" } })
+
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			@Html.LabelFor(model => ticket.Seat.SeatName, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.DisplayFor(model => ticket.Seat.SeatName, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			@Html.LabelFor(model => ticket.Customer.Miles, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.DisplayFor(model => ticket.Customer.Miles, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+
+
+		@Html.ActionLink("Pay with miles","UseMiles", new { id = ticket.TicketID })
+		<div class="form-group">
+			@Html.LabelFor(model => ticket.Flight.FlightNumber.Number, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.DisplayFor(model => ticket.Flight.FlightNumber.Number, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+
+
+
+
+		<div class="form-group">
+			@Html.LabelFor(model => ticket.Flight.DepartDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.DisplayFor(model => ticket.Flight.DepartDateTime, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+		<p>____________________________________________________________________________________</p>
+
+
+		}
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Submit" class="btn btn-default" />
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			@Html.ActionLink("Click here if reservation made online (discount offered!)", "InternetReservation")
+		</div>
+
+
+</div>
+
+}
+
+

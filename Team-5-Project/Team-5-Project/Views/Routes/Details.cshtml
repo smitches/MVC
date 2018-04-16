@@ -1,0 +1,42 @@
+﻿@model Team_5_Project.Models.Route
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Route</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cities)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cities.ToList()[0].Airport) to @Html.DisplayFor(model => model.Cities.ToList()[1].Airport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miles)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miles)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hours)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RouteID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

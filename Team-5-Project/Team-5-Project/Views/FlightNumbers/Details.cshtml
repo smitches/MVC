@@ -1,0 +1,49 @@
+﻿@model Team_5_Project.Models.FlightNumber
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FlightNumber</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BaseFare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BaseFare)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartureDays)
+        </dt>
+
+        <dd>
+            @ViewBag.DepartureDayNames;
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FlightNumberID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

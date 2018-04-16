@@ -1,0 +1,79 @@
+﻿@model Team_5_Project.Models.RoundTripFSVM
+@{
+    ViewBag.Title = "RTSelectedFlights";
+}
+
+<h2>Select Departure Flight</h2>
+
+
+<h3>@ViewBag.Error</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.availableflights.FirstOrDefault().DepartDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.availableflights.FirstOrDefault().FlightNumber)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.availableflights.FirstOrDefault().FlightNumber.startCity.Airport)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.availableflights.FirstOrDefault().FlightNumber.endCityAirport)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.availableflights.FirstOrDefault().ActualFare)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.availableflights.FirstOrDefault().SeatsAvailable)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.availableflights.FirstOrDefault().Departed)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.availableflights.OrderBy(d => d.DepartDateTime))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartDateTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber.Number)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber.startCity.Airport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber.endCityAirport)
+            </td>
+
+
+            <td>
+                $@Html.DisplayFor(modelItem => item.ActualFare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatsAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departed)
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Reserve Departure Flight", "ReserveDepartureFlight", new { id = item.FlightID, vm=Model })
+            </td>
+        </tr>
+    }
+
+</table>

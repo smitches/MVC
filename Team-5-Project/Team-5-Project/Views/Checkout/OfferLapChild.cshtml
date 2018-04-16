@@ -1,0 +1,21 @@
+﻿
+@model IEnumerable<Team_5_Project.Models.AppUser>
+@{
+    ViewBag.Title = "OfferLapChild";
+}
+
+<h2>Do any Customers want a Lap Child under 3?</h2>
+
+<p>@Html.ActionLink("No","ShowTotal")</p>
+
+@foreach (var item in Model)
+{
+    <div>
+        <div>
+            <div>@Html.DisplayFor(Model => item.FirstName)</div>
+            @Html.DisplayFor(Model => item.LastName)
+
+        </div>
+        @Html.ActionLink("Yes", "AttachLapChildTo", new { id=item.Id})
+    </div>
+}

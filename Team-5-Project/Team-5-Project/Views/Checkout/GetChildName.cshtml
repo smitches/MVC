@@ -1,0 +1,13 @@
+﻿@model Team_5_Project.Models.AppUser
+
+@{
+    ViewBag.Title = "GetChildName";
+}
+
+<h2>GetChildName</h2>
+
+<p>Child's Name</p>
+<p>@Html.TextBox("Name")</p>
+
+<div>@Html.ActionLink("Submit","NameChild", new { id=Model.Id })</div>
+

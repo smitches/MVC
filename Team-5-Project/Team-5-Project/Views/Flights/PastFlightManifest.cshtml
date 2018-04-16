@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "PastFlightManifest";
+}
+
+
+@model Team_5_Project.Models.Flight
+
+
+<h2>Past Flight Manifest</h2>
+@Html.ActionLink("Search for Flights", "FlightSearch")
+
+<div>
+    <h4>Flight Manifest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FlightNumber.Number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SeatsAvailable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeatsAvailable)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FlightNumber.startCity.Airport)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FlightNumber.Route.Cities.Where(c => c.CityID != model.FlightNumber.startCity.CityID).ToList()[0].Airport)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActualFare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActualFare)
+        </dd>
+
+        <dt>
+            Pilot
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Crew.CrewMembers.Where(c => c.EmpType == "Pilot").ToList()[0])
+        </dd>
+
+        <dt>
+            CoPilot
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Crew.CrewMembers.Where(c => c.EmpType == "CoPilot").ToList()[0])
+        </dd>
+        <dt>
+            FlightAttendant
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Crew.CrewMembers.Where(c => c.EmpType == "FlightAttendant").ToList()[0])
+        </dd>
+    </dl>
+    <table class="table">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        <tr>
+            <th>
+                Seat Name
+            </th>
+
+            <th>
+                Customer First Name
+            </th>
+
+            <th>
+                Customer Last Name
+            </th>
+
+            <th>
+                Checked In?
+            </th>
+        </tr>
+
+
+        @foreach (var seat in Model.Seats.Where(c=>c.Ticket!=null).Where(c=>c.Ticket.CheckedIn))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(Model => seat.SeatName)
+                </td>
+                <td>
+                    @if (seat.Ticket != null)
+                {
+                        @Html.DisplayFor(Model => seat.Ticket.Customer.FirstName)
+                    }
+                    else
+                    {
+                        @Html.DisplayText("Empty")
+                    }
+                </td>
+                <td>
+                    @if (seat.Ticket != null)
+                {
+                        @Html.DisplayFor(Model => seat.Ticket.Customer.LastName)
+                    }
+                    else
+                    {
+                        @Html.DisplayText("Empty")
+                    }
+                </td>
+                <td>
+
+                    @if (seat.Ticket != null)
+                {
+                        @Html.DisplayFor(Model => seat.Ticket.CheckedIn)
+                    }
+                    else
+                    {
+                        @Html.DisplayText("Empty")
+                    }
+
+                </td>
+            </tr>
+
+        }
+
+    </table>
+
+</div>
+<p>
+
+    @Html.ActionLink("Back to List", "Index")
+</p>

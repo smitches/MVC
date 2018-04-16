@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Team_5_Project.Models.Seat>
+@{
+    ViewBag.Title = "GetCustomer";
+}
+
+<h2>Seats Needing Customer Information</h2>
+
+<table class="table">
+    
+
+    @foreach (var item in Model.OrderBy(d => d.Flight.DepartDateTime).ThenBy(d => d.SeatName))
+    {
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight.FlightNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight.DepartDateTime)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.SeatName)
+        </th>
+        <th></th>
+    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.FlightNumber.Number)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.DepartDateTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatName)
+            </td>
+            
+
+
+            <td>
+                @Html.ActionLink("Search for an Existing Customer", "SearchCustomer", new { seatid = item.SeatID }) 
+                @Html.ActionLink("Create a new Customer", "CreateCustomer")
+     
+            </td>
+			<
+        </tr>
+    }
+	
+</table>
